@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import joblib
 
 app = FastAPI()
@@ -9,7 +9,7 @@ model_ai = joblib.load("model_kelulusan.joblib")
 
 class DataSiswa(BaseModel):
     nama: str
-    jam_belajar: int
+    jam_belajar: int = Field(ge=0, le=24, description="Jam belajar dalam sehari")
     ikut_bimbel: bool
 
 @app.post("/predict")
