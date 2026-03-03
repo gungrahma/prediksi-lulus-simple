@@ -9,6 +9,7 @@ model_ai = joblib.load("model_kelulusan.joblib")
 
 class DataSiswa(BaseModel):
     nama: str
+    # Update : Jam belajar ada restriction sampai 24 jam, lebih dari 24 = error sesuai dengan human.
     jam_belajar: int = Field(ge=0, le=24, description="Jam belajar dalam sehari")
     ikut_bimbel: bool
 
